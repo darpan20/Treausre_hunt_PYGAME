@@ -1,5 +1,6 @@
 from ctypes import *
-import pygame, sys
+import pygame
+import sys
 from pygame.locals import *
 from random import *
 import os
@@ -8,7 +9,7 @@ windll.user32.SetProcessDPIAware()
 true_res = (windll.user32.GetSystemMetrics(0),windll.user32.GetSystemMetrics(1))
 SCREENWIDTH=true_res[0]
 SCREENHEIGHT=true_res[1]
-i=1
+i = 1
 imgB=pygame.transform.scale(pygame.transform.flip(pygame.image.load(os.path.join(os.path.dirname(os.path.realpath('__file__')),"jjj.jpg")),True,False),(SCREENWIDTH,SCREENHEIGHT))
 imgB.set_alpha(80)
 imgc1=pygame.transform.scale(pygame.image.load(os.path.join(os.path.dirname(os.path.realpath('__file__')),"jjj.jpg")),(SCREENWIDTH,SCREENHEIGHT))
@@ -37,8 +38,8 @@ img3=pygame.image.load(os.path.join(os.path.dirname(os.path.realpath('__file__')
 numImages3=41
 img5=pygame.transform.scale(pygame.image.load(os.path.join(os.path.dirname(os.path.realpath('__file__')),"spritesheet.png")),(int(SCREENWIDTH/11.75),int(SCREENHEIGHT/9.9)))
 numImages5=2
-WINDOWMULTIPLIER =5
-WINDOWSIZE =int(SCREENWIDTH/10.97)
+WINDOWMULTIPLIER = 7
+WINDOWSIZE =int(SCREENWIDTH/11.)
 WINDOWWIDTH =WINDOWSIZE * WINDOWMULTIPLIER
 WINDOWHEIGHT =WINDOWSIZE * WINDOWMULTIPLIER
 SQUARESIZE = int((WINDOWSIZE * WINDOWMULTIPLIER) / 5)
@@ -117,9 +118,9 @@ def end(i,mouseClicked,mousex,mousey):
                                print("Collected Treasures:\t",o)  
                                if i==1:  
                                 
-                                if r<=1000:   
+                                if r<1000:   
                                  print("Come on!! You can Guess much Better!!")
-                                elif r==2000:
+                                elif r==2001:
                                     print("Well done! Keep Going")
                                 else:
                                     print("Congrats!!!! You Collected All the Treasures")
@@ -284,7 +285,7 @@ class player():
        pygame.draw.rect(DISPLAYSURF,(0,0,0,0),[self.x,self.y,self.x+self.width+500,self.y+self.height+500],0)    
 def starting():
     s1.set_volume(1)
-    pygame.mixer.Channel(0).play(s1,loops=-1)
+    pygame.mixer.Channel(0).play(s1,loops =- 1)
     global FPSCLOCK, DISPLAYSURF,myimage,r,banner1,player1,player2,chest1,FPS
     FPS=15
     FPSCLOCK = pygame.time.Clock()
@@ -311,7 +312,7 @@ def starting():
         x=getattr(banner1,'y')
         pygame.display.update()
         FPSCLOCK.tick(FPS)
-    start1=player(SCREENWIDTH/2.1,SCREENHEIGHT/1.7,img5,numImages5,0,int(SCREENWIDTH/11.75),int(SCREENHEIGHT/20),0)
+    start1=player(SCREENWIDTH/2.1,SCREENHEIGHT/1.7,img5,numImages5,0,int(SCREENWIDTH/11.77),int(SCREENHEIGHT/20.1),0)
     q=True
     while q: #main game loop
         for event in pygame.event.get():
@@ -359,7 +360,7 @@ def main(i):
     s2.set_volume(1)
     global myfont,mouseClicked,a,o
     pygame.font.init()
-    myfont=pygame.font.SysFont('Comic Sans MS',int(SCREENWIDTH/60))
+    myfont=pygame.font.SysFont('Comic Sans MS',int(SCREENWIDTH/59))
     textsurface=myfont.render('ROUND %s'%i,True,WHITE)
     FPSCLOCK = pygame.time.Clock()
     mouseClicked = False
@@ -378,8 +379,8 @@ def main(i):
      chest1.render(DISPLAYSURF)  
      DISPLAYSURF.blit(imgb1,(0,0))
      DISPLAYSURF.blit(img9,(int(SCREENWIDTH/3.9),-int(SCREENHEIGHT/6)))
-     DISPLAYSURF.blit(img7,(int(SCREENWIDTH/5.65),int(SCREENHEIGHT/2.45)))
-     DISPLAYSURF.blit(img8,(int(SCREENWIDTH/1.4),int(SCREENHEIGHT/2.45)))
+     DISPLAYSURF.blit(img7,(int(SCREENWIDTH/5.65),int(SCREENHEIGHT/2.46)))
+     DISPLAYSURF.blit(img8,(int(SCREENWIDTH/1.4),int(SCREENHEIGHT/2.46)))
     else:
      DISPLAYSURF.fill(BLACK)  
      chest1.update()
@@ -402,7 +403,7 @@ def main(i):
             chest1.update()
             chest1.render(DISPLAYSURF)  
             DISPLAYSURF.blit(imgb1,(0,0))
-            DISPLAYSURF.blit(img9,(int(SCREENWIDTH/3.9),-int(SCREENHEIGHT/6)))
+            DISPLAYSURF.blit(img9,(int(SCREENWIDTH/3.8),-int(SCREENHEIGHT/6)))
             NETSCORE= myfont.render("NET SCORE: %s"%r,True,WHITE)
             DISPLAYSURF.blit(NETSCORE,(int(SCREENWIDTH/1.5),int(SCREENHEIGHT/9)))
             DISPLAYSURF.blit(img11,(int(SCREENWIDTH/5.64),int(SCREENHEIGHT/2.45)))
@@ -416,7 +417,7 @@ def main(i):
               DISPLAYSURF.blit(img9,(int(SCREENWIDTH/3.9),-int(SCREENHEIGHT/6)))
               NETSCORE= myfont.render("NET SCORE: %s"%r,True,WHITE)
               DISPLAYSURF.blit(NETSCORE,(int(SCREENWIDTH/1.5),int(SCREENHEIGHT/9)))
-              DISPLAYSURF.blit(img11,(int(SCREENWIDTH/5.64),int(SCREENHEIGHT/2.45)))
+              DISPLAYSURF.blit(img11,(int(SCREENWIDTH/5.65),int(SCREENHEIGHT/2.45)))
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
